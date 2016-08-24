@@ -1,0 +1,86 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <button class="btn btn-primary btn-raised" (click)="handleCallbackBtn($event)">Callback Button</button>
+            <button class="btn btn-primary btn-raised" (click)="handlePromiseBtn($event)">Promise Button</button>
+            <button class="btn btn-primary btn-raised" (click)="handleFilterBtn($event)">Filter Button</button>
+            <button class="btn btn-primary" (click)="showAddPaymentModal(modal)">Add Payment</button>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="payments">
+                <table class="table table-stripped">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>method</th>
+                            <th>amount</th>
+                            <th>currency</th>
+                            <th>created</th>
+                            <th>status</th>
+                            <th>merchant</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let payment of payments">
+                        <tr>
+                            <td>{{ payment.id }}</td>
+                            <td>{{ payment.method }}</td>
+                            <td>{{ payment.amount }}</td>
+                            <td>{{ payment.currency }}</td>
+                            <td>{{ payment.created }}</td>
+                            <td>{{ payment.status }}</td>
+                            <td>{{ payment.merchant }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<div #modal class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Add Payment</h4>
+            </div>
+            <div class="modal-body">
+                <form #form>
+                    <div class="form-group">
+                        <label for="denominator">Method</label>
+                        <input name="method" type="text" class="form-control" id="denominator" />
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
+                        <input name="amount" type="number" class="form-control" id="amount" />
+                    </div>
+                    <div class="form-group">
+                        <label for="currency">Currency</label>
+                        <input name="currency" type="text" class="form-control" id="currency" />
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <input name="status" type="text" class="form-control" id="status" />
+                    </div>
+                    <div class="form-group">
+                        <label for="merchant">Merchant</label>
+                        <input name="merchant" type="text" class="form-control" id="merchant" />
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel<div class="ripple-container"></div></button>
+                <button type="button" class="btn btn-primary" (click)="addPayment(form)">Add<div class="ripple-container"></div></button>
+            </div>
+        </div>
+    </div>
+</div>
